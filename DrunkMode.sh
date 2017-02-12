@@ -10,7 +10,11 @@ do
         read -e command1
 
         if [ "$command0" == "$command1" ] ; then
-                $command0
+                if [ "$command0" == "exit" ] ; then
+                        kill -9 `ps --pid $$ -oppid=`; exit
+                else
+                        $command0
+                fi
         else
                 echo "Try again!"
         fi
